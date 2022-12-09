@@ -81,6 +81,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadVendCust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadVendCust.Designer.cs">
+      <DependentUpon>LoadVendCust.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     <Compile Include="System\DAO.cs" />
     <Compile Include="System\DAOMSSQL.cs" />
     <Compile Include="System\TransCommand.cs" />
+    <EmbeddedResource Include="LoadVendCust.resx">
+      <DependentUpon>LoadVendCust.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
