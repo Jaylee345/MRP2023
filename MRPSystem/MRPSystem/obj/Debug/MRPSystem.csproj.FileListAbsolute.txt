@@ -1,0 +1,10 @@
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.Properties.Resources.resources
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.csproj.GenerateResource.cache
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.csproj.CoreCompileInputs.cache
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\bin\Debug\MRPSystem.exe.config
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\bin\Debug\MRPSystem.exe
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\bin\Debug\MRPSystem.pdb
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\bin\Debug\Newtonsoft.Json.dll
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.csproj.CopyComplete
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.exe
+D:\GiHub\MRP2023\MRPsystem\MRPSystem\obj\Debug\MRPSystem.pdb
