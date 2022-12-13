@@ -16,128 +16,10 @@ namespace MRPSystem
 {
     public class DAOMSSQL
     {
-        public static string connectStr = ConfigurationManager.ConnectionStrings["WS"].ConnectionString;
-        public static string WT = ConfigurationManager.ConnectionStrings["WT"].ConnectionString;
+        public static string Comp = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
+        
 
-        public static int GetSNum(string stBar, string rPk)
-        {
-            int iCount = 1;
-            //string Con = csGlobal.stWTDataBase;//資料庫
-            using (SqlConnection conn = new SqlConnection(WT))
-            {
-                conn.Open();
-
-                string sql = "";
-                sql += "SELECT top 1 max(sn) as ct FROM WeighRecord with(nolock) WHERE Barcode LIKE '" + stBar + "%' and PackageCode='" + rPk + "'  ";
-
-                SqlCommand command = new SqlCommand(sql, conn);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        //var kk = (int)reader[0];
-                        iCount = reader[0] == DBNull.Value ? 1 : (int)reader[0] + 1;
-
-                    }
-                }
-            }
-            Common.Writetxt("GetSNum: " + iCount.ToString());
-            return iCount;
-        }
-
-        public static int GetSNum(string stBar, string rPk, string connstr)
-        {
-            int iCount = 1;
-            //string Con = csGlobal.stWTDataBase;//資料庫
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connstr))
-                {
-                    conn.Open();
-
-                    string sql = "";
-                    sql += "SELECT top 1 max(sn) as ct FROM WeighRecord with(nolock) WHERE Barcode LIKE '" + stBar + "%' and PackageCode='" + rPk + "'  ";
-
-                    SqlCommand command = new SqlCommand(sql, conn);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            //var kk = (int)reader[0];
-                            iCount = reader[0] == DBNull.Value ? 1 : (int)reader[0] + 1;
-
-                        }
-                    }
-                }
-            }//預防 lock
-            catch (Exception ex)
-            {
-
-                Common.Writetxt("GetSNum: " + iCount.ToString(), ex);
-            }
-            Common.Writetxt("GetSNum: " + iCount.ToString());
-            return iCount;
-        }
-
-        public static int BoxGetSNum(string stBar, string rPk, string connstr)
-        {
-            int iCount = 1;
-            //string Con = csGlobal.stWTDataBase;//資料庫
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connstr))
-                {
-                    conn.Open();
-
-                    string sql = "";
-                    sql += "SELECT top 1 max(sn) as ct FROM MaxSN with(nolock) WHERE Barcode LIKE '" + stBar + "%' and PackageCode='" + rPk + "'  ";
-
-                    SqlCommand command = new SqlCommand(sql, conn);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            //var kk = (int)reader[0];
-                            iCount = reader[0] == DBNull.Value ? 1 : (int)reader[0] + 1;
-
-                        }
-                    }
-                }
-            }//預防 lock
-            catch (Exception ex)
-            {
-
-                Common.Writetxt("GetSNum: " + iCount.ToString(), ex);
-            }
-            Common.Writetxt("GetSNum: " + iCount.ToString());
-            return iCount;
-        }
-
-        public static string GetWorkno()
-        {
-            string wkno = "";
-            //string Con = csGlobal.stWTDataBase;//資料庫
-            using (SqlConnection conn = new SqlConnection(WT))
-            {
-                conn.Open();
-
-                string sql = "";
-                sql = "select top 1 WorkOrder from workorder with (nolock) where datediff(day, starttime, getdate())= 0 and status = ''  ";
-
-                SqlCommand command = new SqlCommand(sql, conn);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        //var kk = (int)reader[0];
-                        wkno = reader[0] == DBNull.Value ? "" : (string)reader[0];
-
-                    }
-                }
-            }
-
-            return wkno;
-        }
+        
         public static int GetNO(string stBar, string rPk, string Con)
         {
             int iCount = 1;
@@ -377,7 +259,7 @@ namespace MRPSystem
 
             string sql = string.Format("Insert into LogRecord(Remark,logText) values('{0}','{1}')", Remark.Replace("'", ""), logText.Replace("'", ""));
 
-            SqlCommand transCommand = TransCommand.GetTranCommand(WT);
+            SqlCommand transCommand = TransCommand.GetTranCommand(Comp);
             try
             {
 
@@ -389,7 +271,7 @@ namespace MRPSystem
 
             catch (Exception ex)
             {
-                Common.Writetxt(WT, ex);
+                Common.Writetxt(Comp, ex);
                 TransCommand.SqlRollback(transCommand);
             }
 
@@ -488,7 +370,7 @@ namespace MRPSystem
             SqlCommand transCommandS = null;
             try
             {
-                transCommandS = TransCommand.GetTranCommand(WT);
+                transCommandS = TransCommand.GetTranCommand(Comp);
                 foreach (string insertSQL in sqlCollect)
                 {
                     errorsql = insertSQL;
@@ -504,7 +386,7 @@ namespace MRPSystem
 
             catch (Exception ex)
             {
-                Common.Writetxt(WT, ex);
+                Common.Writetxt(Comp, ex);
                 TransCommand.SqlRollback(transCommandS);
                 return "F";
             }

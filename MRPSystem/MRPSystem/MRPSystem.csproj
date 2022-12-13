@@ -102,10 +102,19 @@
     <Compile Include="Model\Compinfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowCommon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowCommon.Designer.cs">
+      <DependentUpon>ShowCommon.cs</DependentUpon>
+    </Compile>
     <Compile Include="System\Common.cs" />
     <Compile Include="System\DAO.cs" />
     <Compile Include="System\DAOMSSQL.cs" />
     <Compile Include="System\TransCommand.cs" />
+    <EmbeddedResource Include="Customer.resx">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadVendCust.resx">
       <DependentUpon>LoadVendCust.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +127,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ShowCommon.resx">
+      <DependentUpon>ShowCommon.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

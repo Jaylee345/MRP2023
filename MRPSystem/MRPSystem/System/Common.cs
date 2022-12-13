@@ -12,6 +12,7 @@ using System.Net.Sockets;
 
 using System.Threading;
 using System.Windows.Forms;
+using MRPSystem.Model;
 
 namespace MRPSystem
 {
@@ -25,6 +26,18 @@ namespace MRPSystem
             string result = param.Substring(0, length);
             return result;
         }
+
+        public static List<Taxtype> GetTaxtype()
+        {
+            List<Taxtype> taxtypelist = new List<Taxtype>();
+            taxtypelist.Add(new Taxtype(){Text="1",Value= "外加稅" });
+            taxtypelist.Add(new Taxtype() { Text = "2", Value = "內含稅" });
+            taxtypelist.Add(new Taxtype() { Text = "3", Value = "免稅" });
+            taxtypelist.Add(new Taxtype() { Text = "4", Value = "零稅率" });
+            return taxtypelist;
+
+        }
+
         public static string GetPlant(string wkno)
         {
             string kv = "KV";
