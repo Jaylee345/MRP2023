@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using MRPSystem.Model;
 
@@ -15,31 +14,17 @@ namespace MRPSystem
 {
     public partial class Customer : Form
     {
-        string CompDB = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
+        public static string CompDB = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
+        TextBox changbox = new TextBox();
         public Customer()
         {
             InitializeComponent();
-            var taxlist = Common.GetTaxtype();
-            taxtype.DataSource = taxlist;
-            taxtype.DisplayMember = "Value";
-            taxtype.ValueMember = "Text";
+            button1_Click(null, null);
+            //var taxlist = Common.GetTaxtype();
+            //taxtype.DataSource = taxlist;
+            //taxtype.DisplayMember = "Value";
+            //taxtype.ValueMember = "Text";
 
-
-            string sqlstr = string.Format("SELECT customPK, CusName, i_custom, i_company, i_lastDateTime, i_no, i_clerk, i_name, i_nameE, i_shortcut, i_shortcutE, i_active, i_state, i_export, i_ceo, i_phone1, i_phone2, i_fax, i_mobile, i_bbCall, i_addr1, i_zip, i_email, i_websit, i_bank, i_bankAcc, i_memo, i_taxid, i_taxType, i_taxRate, i_agent, i_agentA, i_service, i_serviceA, i_payto, i_billto, i_sendto, i_supplier, i_currency, i_limit, i_dealDate, i_transDate, i_sellType, i_areaType, i_countryType, i_cusGroup, i_groupType, i_tradeType, i_shipType, i_term, i_billType, i_doBill, i_marker, i_companyKind, i_registerDept, i_companyNo, i_fromCmp, i_parentCompany, i_factoryNo, i_sales, i_bizContent, i_level, i_manageCompany, i_introducer, i_priceDiscount, i_billNo, i_shipToAddr, i_sender, i_recDiscount, i_payPoint, i_shipDepot, i_backDepot, i_uniformNo, i_lastTradeDate, i_invMonth, i_billDate, i_BankAccName, i_BankAccNo, i_totPrincipal, i_recPrincipal, i_creditAmount, i_discountPrinted, i_balancebillDate, i_sendBillDate, i_RequestbillDate, i_billName, i_billAddr, i_checkSeal, i_attachedGroup, i_postCode, i_safeInvNum, i_shipToAddr2, i_shipToAddr3, i_armAcc, i_armBill, i_preAcc, i_slipAcc, i_priceLevel, i_slipMemo, i_addUser, i_addDate, i_modUser, i_modDate, i_storePlace, i_storePlaceBack, i_addrE, i_addrHouseE, i_subBankNo, i_exportTrade, i_saleCarNo, i_assure, i_jnPerDayAmount, i_jnDayNum, i_jnNotBackNum, i_ceoDate, i_endSaleDate, i_loginName, i_password, i_year, i_month, i_day, i_loginLock, i_serSubCom, i_tLState FROM v_SaleCustom  " +
-            "WHERE i_company> ''  and i_company = '{0}' " +
-            "ORDER BY i_no", sysInfo.Comp);
-
-            //Common.Common.Writetxt(sqlstr);
-            var custinfo = DAOMSSQL.GetQueryList<custInfo>(sqlstr, CompDB);
-            if (custinfo != null && custinfo.Count > 0)
-            {
-                var Olist = from d in custinfo
-                            orderby d.custno
-                            select new { d.custno, d.CusName };
-                customerData.DataSource = Olist.ToList();
-                ShowGridHead();
-
-            }
 
         }
         private void ShowGridHead()
@@ -49,7 +34,7 @@ namespace MRPSystem
             customerData.Columns[0].HeaderText = "客戶ID";
             customerData.Columns[0].Width = 120;
             customerData.Columns[1].HeaderText = "名稱";
-            customerData.Columns[1].Width = 120;
+            customerData.Columns[1].Width = 200;
             ;
 
 
@@ -59,7 +44,7 @@ namespace MRPSystem
         private void button1_Click(object sender, EventArgs e)
         {
             string sqlstr = string.Format("SELECT custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage  FROM aaccust with (nolock)  " +
-            "WHERE i_company> ''  and i_company = '{0}' " +
+            "WHERE 1=1 " +
             "ORDER BY custno", sysInfo.Comp);
 
             //Common.Common.Writetxt(sqlstr);
@@ -78,16 +63,7 @@ namespace MRPSystem
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string strsql = "insert into aaccust(custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage ) values('" " +
-                "i_export, i_ceo, i_phone1, i_phone2, i_fax, i_addr1, i_email, i_websit, i_bank, i_bankAcc, " +
-                "i_taxid, i_taxType, i_taxRate, i_agent, i_agentA, i_service, i_serviceA, i_payto, i_billto, i_sendto, " +
-                " i_supplier, i_currency, i_transDate, i_sellType, i_areaType, i_countryType, i_cusGroup, i_tradeType, i_shipType, i_term, " +
-                " i_billType, i_doBill, i_companyNo, i_parentCompany, i_factoryNo, i_level, i_manageCompany, i_introducer, i_priceDiscount, i_shipToAddr, " +
-                " i_sender, i_recDiscount, i_payPoint, i_shipDepot, i_backDepot, i_uniformNo, i_BankAccName, i_BankAccNo, i_totPrincipal, i_recPrincipal, " +
-                "i_discountPrinted, i_balancebillDate, i_sendBillDate, i_RequestbillDate, i_billName, i_billAddr, i_postCode, i_safeInvNum, i_shipToAddr2, i_shipToAddr3, " +
-                " i_armAcc, i_armBill, i_preAcc, i_slipAcc, i_priceLevel, i_slipMemo, i_addUser, i_addDate, i_storePlace, i_storePlaceBack, " +
-                "i_addrE, i_addrHouseE, i_subBankNo, i_exportTrade, i_assure, i_ceoDate, i_serSubCom, i_tLState) " +
-                " VALUES('A00000000002', 'A00000000001', '20221114 13:08:51.823', 'CS202211002', '1', '2', '11', '31', 'T', 0, 'F', '111', '4', '33', '5', '9', '22', 'www..com', 'A00000000001', 'A00000000001', '3', 0, 5.000000, 'A00000000001', 'A00000000001', 'A00000000002', 'A00000000002', 'A00000000001', 'A00000000001', '', '', 'A00000000001', '20221114 00:00:00.000', 'A00000000001', '', '', 'A00000000001', 'A00000000001', 'A00000000001', 'A00000000001', 1, 0, '44', '', '7', 'E', 'A00000000001', '6', 0.0, '1', 'A00000000002', 0.0, '0', 'A00000000101', 'A00000000094', '89484561', '1235', '12345', 200.0, 100.0, 0, 1, 3, 2, 'Test001', '12333', '8', 1.0, '2', '3', 'A00000000005', 'A00000000011', 'A00000000030', 'A00000000015', 0, '12444', 'A00000000001', '20221114 13:04:30.123', 'A00000000101', 'A00000000094', 'eng1', 'eng2', '1234', 'F', 0, '20050824 13:57:43.513', 'F', 1)";
+            string strsql = "insert into aaccust(custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage ) values('"  ;
 
         }
 
@@ -102,7 +78,63 @@ namespace MRPSystem
 
         private void button6_Click(object sender, EventArgs e)
         {
+            ShowCommon frm = new ShowCommon("sales");
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                salesid.Text = ShowCommon.id ; 
+                salesname.Text = ShowCommon.name; 
+            }
+        }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ShowCommon frm = new ShowCommon("taxtype");
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                taxid.Text = ShowCommon.id;
+                taxName.Text = ShowCommon.name;
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            ShowCommon frm = new ShowCommon("paycode");
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Paycode.Text = ShowCommon.id;
+                Payname.Text = ShowCommon.name;
+            }
+        }
+        private void Find(Control col)
+        {
+            foreach (Control cols in col.Controls)
+            {
+                if (cols is TextBox)
+                {
+                    //Console.WriteLine(cols.Text);
+                    Console.WriteLine(cols.Name);
+                    continue;
+                }
+                
+            }
+        }
+
+        private  void GetCustomer(string no)
+        {
+            string sqlstr = string.Format("SELECT top 1 custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage  FROM aaccust with (nolock)  " +
+            "WHERE 1=1 and custno='{0}' " 
+            , no);
+
+            //Common.Common.Writetxt(sqlstr);
+            Find(this);
+        }
+
+        private void customerData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (customerData.Rows.Count > 0) 
+            {
+                string custno = (string)customerData.Rows[e.RowIndex].Cells[0].Value;
+                GetCustomer(custno);
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace MRPSystem
         public static string Account;
         MenuForm mainForm = null;
         string CompDB = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
+        public static string[] accts = { "C06", "CD6", "Y06", "G0", "N06", "ND6", "NF6", "CF6" };
         public Login()
         {
             InitializeComponent();
@@ -30,15 +31,15 @@ namespace MRPSystem
             InitializeComponent();
             mainForm = mform as MenuForm;
            
-            string sqlstr = " select i_company,i_name from Company ";
+            string sqlstr = "select compid,compname from comps with (nolock) where compid like 'M%'";
 
             var Compdata = DAOMSSQL.GetQueryList<Compinfo>(sqlstr, CompDB);
             if (Compdata != null && Compdata.Count > 0)
             {
 
                 Comps.DataSource = Compdata;
-                Comps.DisplayMember = "i_name";
-                Comps.ValueMember = "i_company";
+                Comps.DisplayMember = "compid";
+                Comps.ValueMember = "compname";
                 Comps.SelectedIndex = 0;
             }
 
@@ -57,31 +58,29 @@ namespace MRPSystem
                 account.Focus();
 
             }
-            //if (string.IsNullOrEmpty(pwd.Text))
-            //{
-            //    label3.Text = "密碼空白!";
-            //    pwd.Focus();
-            //}
-            if (label3.Text != "")
+            if (string.IsNullOrEmpty(pwd.Text))
             {
-                return;
+                label3.Text = "密碼空白!";
+                pwd.Focus();
             }
+            
+ 
 
 
 
 
             var citem = (Compinfo)Comps.SelectedItem;
-            string sqlstr = string.Format("select Name=i_name,cref=i_lock from _Login A " +
-                   " where i_company='{0}' and i_name='{1}' ", citem.i_company, account.Text);
+            string sqlstr = string.Format("select compid,userno,password,fname from asyuser with (nolock) " +
+                   " where compid='{0}' and userno='{1}' ", citem.compid, account.Text);
 
 
             //Common.Common.Writetxt(sqlstr);
             var accinfo = DAOMSSQL.GetQueryList<AccInfo>(sqlstr, CompDB).FirstOrDefault();
             if (accinfo != null)
             {
-                if (accinfo.Cref == "T")
+                if (accinfo.password.ToLower() != pwd.Text.ToLower())
                 {
-                    msg.Text = "帳號已被鎖住!!!";
+                    msg.Text = "密碼錯誤!!!";
                     return;
                 }
                 //if (accinfo.password.ToUpper() != pwd.Text.ToUpper())
@@ -90,14 +89,10 @@ namespace MRPSystem
                 //    return;
                 //}
 
-                sysInfo.Comp = citem.i_company;
-                sysInfo.CompName = citem.i_name;
-                sysInfo.SFB01 = accinfo.comm;
-                sysInfo.Admin = accinfo.Name; //(account.Text.Substring(2)=="6")
-                sysInfo.acc = account.Text;
-                sysInfo.Code = accinfo.code;
-                sysInfo.area = accinfo.area;
-                sysInfo.cref = accinfo.Cref;
+                sysInfo.Comp = citem.compid;
+                sysInfo.CompName = citem.compname;
+                
+                sysInfo.Admin = accinfo.userno; //(account.Text.Substring(2)=="6")
 
                 //AccInfo.count += 1;
                 Account = account.Text.ToUpper();
@@ -255,6 +250,13 @@ namespace MRPSystem
             {
                 pwd.Focus();
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            account.Text = "admin";
+            pwd.Text = "1234";
+            button1_Click(null, null);
         }
     }
 }

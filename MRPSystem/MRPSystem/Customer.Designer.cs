@@ -165,6 +165,20 @@ namespace MRPSystem
             this.label66 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Payname = new System.Windows.Forms.TextBox();
+            this.Paycode = new System.Windows.Forms.TextBox();
+            this.taxName = new System.Windows.Forms.TextBox();
+            this.salesname = new System.Windows.Forms.TextBox();
+            this.taxid = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.remark1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.compaddr = new System.Windows.Forms.TextBox();
@@ -201,20 +215,6 @@ namespace MRPSystem
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.label12 = new System.Windows.Forms.Label();
-            this.remark1 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.taxid = new System.Windows.Forms.TextBox();
-            this.salesname = new System.Windows.Forms.TextBox();
-            this.taxName = new System.Windows.Forms.TextBox();
-            this.Paycode = new System.Windows.Forms.TextBox();
-            this.Payname = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerData)).BeginInit();
             this.tabPage5.SuspendLayout();
@@ -282,6 +282,7 @@ namespace MRPSystem
             this.customerData.RowTemplate.Height = 24;
             this.customerData.Size = new System.Drawing.Size(351, 533);
             this.customerData.TabIndex = 6;
+            this.customerData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerData_CellClick);
             // 
             // i_custom
             // 
@@ -1608,6 +1609,144 @@ namespace MRPSystem
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本";
             // 
+            // Payname
+            // 
+            this.Payname.BackColor = System.Drawing.Color.Beige;
+            this.Payname.Location = new System.Drawing.Point(598, 358);
+            this.Payname.Name = "Payname";
+            this.Payname.ReadOnly = true;
+            this.Payname.Size = new System.Drawing.Size(147, 33);
+            this.Payname.TabIndex = 90;
+            // 
+            // Paycode
+            // 
+            this.Paycode.BackColor = System.Drawing.Color.Beige;
+            this.Paycode.Location = new System.Drawing.Point(493, 358);
+            this.Paycode.Name = "Paycode";
+            this.Paycode.ReadOnly = true;
+            this.Paycode.Size = new System.Drawing.Size(82, 33);
+            this.Paycode.TabIndex = 89;
+            // 
+            // taxName
+            // 
+            this.taxName.BackColor = System.Drawing.Color.Beige;
+            this.taxName.Location = new System.Drawing.Point(598, 307);
+            this.taxName.Name = "taxName";
+            this.taxName.ReadOnly = true;
+            this.taxName.Size = new System.Drawing.Size(147, 33);
+            this.taxName.TabIndex = 88;
+            // 
+            // salesname
+            // 
+            this.salesname.BackColor = System.Drawing.Color.Beige;
+            this.salesname.Location = new System.Drawing.Point(598, 253);
+            this.salesname.Name = "salesname";
+            this.salesname.ReadOnly = true;
+            this.salesname.Size = new System.Drawing.Size(147, 33);
+            this.salesname.TabIndex = 87;
+            // 
+            // taxid
+            // 
+            this.taxid.BackColor = System.Drawing.Color.Beige;
+            this.taxid.Location = new System.Drawing.Point(493, 307);
+            this.taxid.Name = "taxid";
+            this.taxid.ReadOnly = true;
+            this.taxid.Size = new System.Drawing.Size(82, 33);
+            this.taxid.TabIndex = 86;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Teal;
+            this.button8.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button8.Location = new System.Drawing.Point(769, 353);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(67, 39);
+            this.button8.TabIndex = 85;
+            this.button8.Text = "...";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Teal;
+            this.button7.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button7.Location = new System.Drawing.Point(769, 298);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(67, 39);
+            this.button7.TabIndex = 84;
+            this.button7.Text = "...";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label15.Location = new System.Drawing.Point(392, 363);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(99, 21);
+            this.label15.TabIndex = 82;
+            this.label15.Text = "付款方式:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.Beige;
+            this.textBox3.Location = new System.Drawing.Point(111, 358);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(140, 33);
+            this.textBox3.TabIndex = 80;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(28, 364);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 21);
+            this.label14.TabIndex = 81;
+            this.label14.Text = "請款日:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Beige;
+            this.textBox1.Location = new System.Drawing.Point(111, 306);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(140, 33);
+            this.textBox1.TabIndex = 78;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label13.Location = new System.Drawing.Point(28, 312);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(78, 21);
+            this.label13.TabIndex = 79;
+            this.label13.Text = "月結日:";
+            // 
+            // remark1
+            // 
+            this.remark1.BackColor = System.Drawing.Color.Beige;
+            this.remark1.Location = new System.Drawing.Point(111, 510);
+            this.remark1.Multiline = true;
+            this.remark1.Name = "remark1";
+            this.remark1.ReadOnly = true;
+            this.remark1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.remark1.Size = new System.Drawing.Size(872, 140);
+            this.remark1.TabIndex = 77;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(38, 515);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 21);
+            this.label12.TabIndex = 76;
+            this.label12.Text = "備註:";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -1632,100 +1771,128 @@ namespace MRPSystem
             // 
             // compaddr
             // 
+            this.compaddr.BackColor = System.Drawing.Color.Beige;
             this.compaddr.Location = new System.Drawing.Point(394, 452);
             this.compaddr.Multiline = true;
             this.compaddr.Name = "compaddr";
+            this.compaddr.ReadOnly = true;
             this.compaddr.Size = new System.Drawing.Size(587, 38);
             this.compaddr.TabIndex = 32;
             // 
             // postid
             // 
+            this.postid.BackColor = System.Drawing.Color.Beige;
             this.postid.Location = new System.Drawing.Point(111, 457);
             this.postid.Name = "postid";
+            this.postid.ReadOnly = true;
             this.postid.Size = new System.Drawing.Size(139, 33);
             this.postid.TabIndex = 31;
             // 
             // salesid
             // 
+            this.salesid.BackColor = System.Drawing.Color.Beige;
             this.salesid.Location = new System.Drawing.Point(491, 253);
             this.salesid.Name = "salesid";
+            this.salesid.ReadOnly = true;
             this.salesid.Size = new System.Drawing.Size(84, 33);
             this.salesid.TabIndex = 15;
             // 
             // fax
             // 
+            this.fax.BackColor = System.Drawing.Color.Beige;
             this.fax.Location = new System.Drawing.Point(111, 259);
             this.fax.Name = "fax";
+            this.fax.ReadOnly = true;
             this.fax.Size = new System.Drawing.Size(140, 33);
             this.fax.TabIndex = 13;
             // 
             // offtel2
             // 
-            this.offtel2.Location = new System.Drawing.Point(491, 208);
+            this.offtel2.BackColor = System.Drawing.Color.Beige;
+            this.offtel2.Location = new System.Drawing.Point(518, 206);
             this.offtel2.Name = "offtel2";
+            this.offtel2.ReadOnly = true;
             this.offtel2.Size = new System.Drawing.Size(187, 33);
             this.offtel2.TabIndex = 12;
             // 
             // offtel1
             // 
+            this.offtel1.BackColor = System.Drawing.Color.Beige;
             this.offtel1.Location = new System.Drawing.Point(111, 208);
             this.offtel1.Name = "offtel1";
+            this.offtel1.ReadOnly = true;
             this.offtel1.Size = new System.Drawing.Size(200, 33);
             this.offtel1.TabIndex = 11;
             // 
             // email
             // 
-            this.email.Location = new System.Drawing.Point(489, 158);
+            this.email.BackColor = System.Drawing.Color.Beige;
+            this.email.Location = new System.Drawing.Point(516, 156);
             this.email.Name = "email";
+            this.email.ReadOnly = true;
             this.email.Size = new System.Drawing.Size(357, 33);
             this.email.TabIndex = 10;
             // 
             // homepage
             // 
+            this.homepage.BackColor = System.Drawing.Color.Beige;
             this.homepage.Location = new System.Drawing.Point(111, 157);
             this.homepage.Name = "homepage";
+            this.homepage.ReadOnly = true;
             this.homepage.Size = new System.Drawing.Size(276, 33);
             this.homepage.TabIndex = 9;
             // 
             // serno
             // 
+            this.serno.BackColor = System.Drawing.Color.Beige;
             this.serno.Location = new System.Drawing.Point(111, 107);
             this.serno.Name = "serno";
+            this.serno.ReadOnly = true;
             this.serno.Size = new System.Drawing.Size(140, 33);
             this.serno.TabIndex = 7;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(489, 107);
+            this.textBox5.BackColor = System.Drawing.Color.Beige;
+            this.textBox5.Location = new System.Drawing.Point(516, 105);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(359, 33);
             this.textBox5.TabIndex = 6;
             // 
             // custname
             // 
+            this.custname.BackColor = System.Drawing.Color.Beige;
             this.custname.Location = new System.Drawing.Point(111, 59);
             this.custname.Name = "custname";
+            this.custname.ReadOnly = true;
             this.custname.Size = new System.Drawing.Size(288, 33);
             this.custname.TabIndex = 5;
             // 
             // shortname
             // 
-            this.shortname.Location = new System.Drawing.Point(490, 59);
+            this.shortname.BackColor = System.Drawing.Color.Beige;
+            this.shortname.Location = new System.Drawing.Point(515, 59);
             this.shortname.Name = "shortname";
+            this.shortname.ReadOnly = true;
             this.shortname.Size = new System.Drawing.Size(140, 33);
             this.shortname.TabIndex = 4;
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.Beige;
             this.textBox2.Location = new System.Drawing.Point(514, 14);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(189, 33);
             this.textBox2.TabIndex = 2;
             // 
             // custno
             // 
+            this.custno.BackColor = System.Drawing.Color.Beige;
             this.custno.Location = new System.Drawing.Point(111, 13);
             this.custno.Name = "custno";
+            this.custno.ReadOnly = true;
             this.custno.Size = new System.Drawing.Size(140, 33);
             this.custno.TabIndex = 1;
             // 
@@ -1753,7 +1920,7 @@ namespace MRPSystem
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label25.Location = new System.Drawing.Point(415, 213);
+            this.label25.Location = new System.Drawing.Point(437, 211);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(78, 21);
             this.label25.TabIndex = 44;
@@ -1820,7 +1987,7 @@ namespace MRPSystem
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(392, 114);
+            this.label11.Location = new System.Drawing.Point(414, 112);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(99, 21);
             this.label11.TabIndex = 20;
@@ -1830,7 +1997,7 @@ namespace MRPSystem
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(391, 163);
+            this.label9.Location = new System.Drawing.Point(413, 161);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 21);
             this.label9.TabIndex = 18;
@@ -1850,7 +2017,7 @@ namespace MRPSystem
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(433, 141);
+            this.label7.Location = new System.Drawing.Point(462, 139);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 21);
             this.label7.TabIndex = 14;
@@ -1918,126 +2085,6 @@ namespace MRPSystem
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1033, 758);
             this.tabControl1.TabIndex = 0;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(38, 515);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 21);
-            this.label12.TabIndex = 76;
-            this.label12.Text = "備註:";
-            // 
-            // remark1
-            // 
-            this.remark1.Location = new System.Drawing.Point(111, 510);
-            this.remark1.Multiline = true;
-            this.remark1.Name = "remark1";
-            this.remark1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.remark1.Size = new System.Drawing.Size(872, 140);
-            this.remark1.TabIndex = 77;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(111, 306);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 33);
-            this.textBox1.TabIndex = 78;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.Location = new System.Drawing.Point(28, 312);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 21);
-            this.label13.TabIndex = 79;
-            this.label13.Text = "月結日:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(111, 358);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(140, 33);
-            this.textBox3.TabIndex = 80;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label14.Location = new System.Drawing.Point(28, 364);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 21);
-            this.label14.TabIndex = 81;
-            this.label14.Text = "請款日:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label15.Location = new System.Drawing.Point(392, 363);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(99, 21);
-            this.label15.TabIndex = 82;
-            this.label15.Text = "付款方式:";
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.Teal;
-            this.button7.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button7.Location = new System.Drawing.Point(769, 298);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(67, 39);
-            this.button7.TabIndex = 84;
-            this.button7.Text = "...";
-            this.button7.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Teal;
-            this.button8.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button8.Location = new System.Drawing.Point(769, 353);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(67, 39);
-            this.button8.TabIndex = 85;
-            this.button8.Text = "...";
-            this.button8.UseVisualStyleBackColor = false;
-            // 
-            // taxid
-            // 
-            this.taxid.Location = new System.Drawing.Point(493, 307);
-            this.taxid.Name = "taxid";
-            this.taxid.Size = new System.Drawing.Size(82, 33);
-            this.taxid.TabIndex = 86;
-            // 
-            // salesname
-            // 
-            this.salesname.Location = new System.Drawing.Point(598, 253);
-            this.salesname.Name = "salesname";
-            this.salesname.Size = new System.Drawing.Size(147, 33);
-            this.salesname.TabIndex = 87;
-            // 
-            // taxName
-            // 
-            this.taxName.Location = new System.Drawing.Point(598, 307);
-            this.taxName.Name = "taxName";
-            this.taxName.Size = new System.Drawing.Size(147, 33);
-            this.taxName.TabIndex = 88;
-            // 
-            // Paycode
-            // 
-            this.Paycode.Location = new System.Drawing.Point(493, 358);
-            this.Paycode.Name = "Paycode";
-            this.Paycode.Size = new System.Drawing.Size(82, 33);
-            this.Paycode.TabIndex = 89;
-            // 
-            // Payname
-            // 
-            this.Payname.Location = new System.Drawing.Point(598, 358);
-            this.Payname.Name = "Payname";
-            this.Payname.Size = new System.Drawing.Size(147, 33);
-            this.Payname.TabIndex = 90;
             // 
             // Customer
             // 

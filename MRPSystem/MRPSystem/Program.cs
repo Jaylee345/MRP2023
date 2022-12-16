@@ -16,8 +16,8 @@ namespace MRPSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MenuForm());
-            Application.Run(new LoadVendCust());
+            Application.Run(new MenuForm());
+            //Application.Run(new LoadVendCust());
         }
     }
 }

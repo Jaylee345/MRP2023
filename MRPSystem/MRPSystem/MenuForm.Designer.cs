@@ -32,6 +32,8 @@ namespace MRPSystem
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.銷貨作業ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.客戶管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.客戶設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.報價單ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.訂購單ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.銷貨單ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,8 +44,6 @@ namespace MRPSystem
             this.財務報表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.明細分類帳多科目ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.名片管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.客戶管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.客戶設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +75,21 @@ namespace MRPSystem
             this.銷貨作業ToolStripMenuItem.Name = "銷貨作業ToolStripMenuItem";
             this.銷貨作業ToolStripMenuItem.Size = new System.Drawing.Size(145, 41);
             this.銷貨作業ToolStripMenuItem.Text = "銷貨作業";
+            // 
+            // 客戶管理ToolStripMenuItem
+            // 
+            this.客戶管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.客戶設定ToolStripMenuItem});
+            this.客戶管理ToolStripMenuItem.Name = "客戶管理ToolStripMenuItem";
+            this.客戶管理ToolStripMenuItem.Size = new System.Drawing.Size(210, 42);
+            this.客戶管理ToolStripMenuItem.Text = "客戶管理";
+            // 
+            // 客戶設定ToolStripMenuItem
+            // 
+            this.客戶設定ToolStripMenuItem.Name = "客戶設定ToolStripMenuItem";
+            this.客戶設定ToolStripMenuItem.Size = new System.Drawing.Size(210, 42);
+            this.客戶設定ToolStripMenuItem.Text = "客戶設定";
+            this.客戶設定ToolStripMenuItem.Click += new System.EventHandler(this.客戶設定ToolStripMenuItem_Click);
             // 
             // 報價單ToolStripMenuItem
             // 
@@ -148,21 +163,6 @@ namespace MRPSystem
             this.名片管理ToolStripMenuItem.Name = "名片管理ToolStripMenuItem";
             this.名片管理ToolStripMenuItem.Size = new System.Drawing.Size(145, 41);
             this.名片管理ToolStripMenuItem.Text = "名片管理";
-            // 
-            // 客戶管理ToolStripMenuItem
-            // 
-            this.客戶管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.客戶設定ToolStripMenuItem});
-            this.客戶管理ToolStripMenuItem.Name = "客戶管理ToolStripMenuItem";
-            this.客戶管理ToolStripMenuItem.Size = new System.Drawing.Size(210, 42);
-            this.客戶管理ToolStripMenuItem.Text = "客戶管理";
-            // 
-            // 客戶設定ToolStripMenuItem
-            // 
-            this.客戶設定ToolStripMenuItem.Name = "客戶設定ToolStripMenuItem";
-            this.客戶設定ToolStripMenuItem.Size = new System.Drawing.Size(210, 42);
-            this.客戶設定ToolStripMenuItem.Text = "客戶設定";
-            this.客戶設定ToolStripMenuItem.Click += new System.EventHandler(this.客戶設定ToolStripMenuItem_Click);
             // 
             // MenuForm
             // 

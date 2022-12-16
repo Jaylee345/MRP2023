@@ -15,13 +15,14 @@ namespace MRPSystem
     public partial class ShowCommon : Form
     {
         string CompDB = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
+        public static string id="",name="";
         public ShowCommon()
         {
             InitializeComponent();
         }
-        public ShowCommon(string type)
+        public ShowCommon(string type) //taxtype  paycode  //sales
         {
-            InitializeComponent();
+            InitializeComponent();  
             string sqlstr = "";
             if (type == "taxtype") 
             {
@@ -79,6 +80,13 @@ namespace MRPSystem
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            if (CommonInfo.Rows.Count > 0)
+            {
+                id = (string)CommonInfo.Rows[e.RowIndex].Cells[0].Value;
+                name = (string)CommonInfo.Rows[e.RowIndex].Cells[1].Value;
+                DialogResult = DialogResult.OK;//這一定要設
+                Close();
+            }
         }
     }
 }

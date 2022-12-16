@@ -33,7 +33,7 @@ namespace MRPSystem
         private void MenuForm_Load(object sender, EventArgs e)
         {
 
-            this.Text = string.Format("進銷存系統 {0}");
+            this.Text = string.Format("進銷存系統 ");
             WindowState = FormWindowState.Maximized;
 
             newMDIChild = new Login(this);

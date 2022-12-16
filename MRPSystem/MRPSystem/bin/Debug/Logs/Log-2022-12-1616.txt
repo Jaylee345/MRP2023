@@ -1,0 +1,38 @@
+<---2022-12-16 16:37:32--> select i_company,i_name from Company Data Source=192.168.66.198;Initial Catalog=Compdata;User ID=king;Password=!QAZ2wsx;
+
+Message:無效的物件名稱 'Company'。
+ StackTrace:   於 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   於 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   於 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   於 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   於 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   於 MRPSystem.DAOMSSQL.GetQueryList[T](String sqlStr, String connStr) 於 D:\2023\MRP2023\MRPSystem\MRPSystem\System\DAOMSSQL.cs: 行 61 
+ Source:.Net SqlClient Data Provider 
+ 
+
+<---2022-12-16 16:50:40-->SELECT customPK, CusName, i_custom, i_company, i_lastDateTime, i_no, i_clerk, i_name, i_nameE, i_shortcut, i_shortcutE, i_active, i_state, i_export, i_ceo, i_phone1, i_phone2, i_fax, i_mobile, i_bbCall, i_addr1, i_zip, i_email, i_websit, i_bank, i_bankAcc, i_memo, i_taxid, i_taxType, i_taxRate, i_agent, i_agentA, i_service, i_serviceA, i_payto, i_billto, i_sendto, i_supplier, i_currency, i_limit, i_dealDate, i_transDate, i_sellType, i_areaType, i_countryType, i_cusGroup, i_groupType, i_tradeType, i_shipType, i_term, i_billType, i_doBill, i_marker, i_companyKind, i_registerDept, i_companyNo, i_fromCmp, i_parentCompany, i_factoryNo, i_sales, i_bizContent, i_level, i_manageCompany, i_introducer, i_priceDiscount, i_billNo, i_shipToAddr, i_sender, i_recDiscount, i_payPoint, i_shipDepot, i_backDepot, i_uniformNo, i_lastTradeDate, i_invMonth, i_billDate, i_BankAccName, i_BankAccNo, i_totPrincipal, i_recPrincipal, i_creditAmount, i_discountPrinted, i_balancebillDate, i_sendBillDate, i_RequestbillDate, i_billName, i_billAddr, i_checkSeal, i_attachedGroup, i_postCode, i_safeInvNum, i_shipToAddr2, i_shipToAddr3, i_armAcc, i_armBill, i_preAcc, i_slipAcc, i_priceLevel, i_slipMemo, i_addUser, i_addDate, i_modUser, i_modDate, i_storePlace, i_storePlaceBack, i_addrE, i_addrHouseE, i_subBankNo, i_exportTrade, i_saleCarNo, i_assure, i_jnPerDayAmount, i_jnDayNum, i_jnNotBackNum, i_ceoDate, i_endSaleDate, i_loginName, i_password, i_year, i_month, i_day, i_loginLock, i_serSubCom, i_tLState FROM v_SaleCustom  WHERE i_company> ''  and i_company = 'M1' ORDER BY i_noData Source=192.168.66.198;Initial Catalog=Compdata;User ID=king;Password=!QAZ2wsx;
+
+Message:無效的物件名稱 'v_SaleCustom'。
+ StackTrace:   於 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   於 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   於 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   於 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   於 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   於 MRPSystem.DAOMSSQL.GetQueryList[T](String sqlStr, String connStr) 於 D:\2023\MRP2023\MRPSystem\MRPSystem\System\DAOMSSQL.cs: 行 61 
+ Source:.Net SqlClient Data Provider 
+ 
+

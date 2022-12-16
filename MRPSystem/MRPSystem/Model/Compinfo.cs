@@ -8,10 +8,9 @@ namespace MRPSystem.Model
 {
     public class Compinfo
     {
-        public string i_company { set; get; }
-        public string i_name { set; get; }
-        public string i_employee { set; get; }
-        public string i_lock { set; get; }
+        public string compid { set; get; }
+        public string compname { set; get; }
+
     }
     public class taxtypeinfo
     {
@@ -50,18 +49,13 @@ namespace MRPSystem.Model
     public class AccInfo
     {
         //public static int count;
-
-        public string account { set; get; }
+        //compid,userno,password,fname
+        public string compid { set; get; }
+        public string userno { set; get; }
         public string password { set; get; }
-        public string status { set; get; }
-        public string comm { set; get; }
+        public string fname { set; get; }
 
-        public string Name { set; get; }
-        public static string CAS { set; get; }
-        public static string CAS1 { set; get; }
-        public string code { set; get; }
-        public string area { set; get; }
-        public string Cref { set; get; }
+
     }
     //vendno,vendname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,
     public class Vendinfo

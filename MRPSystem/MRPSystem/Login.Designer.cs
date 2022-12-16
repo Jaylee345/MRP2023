@@ -167,6 +167,7 @@ namespace MRPSystem
             this.label5.Size = new System.Drawing.Size(352, 31);
             this.label5.TabIndex = 86;
             this.label5.Text = "進銷存系統 Version: 20220101";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Login
             // 

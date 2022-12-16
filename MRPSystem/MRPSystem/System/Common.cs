@@ -19,7 +19,7 @@ namespace MRPSystem
     public class Common
     {
         public static string logPath = Application.StartupPath + "\\Logs";
-        public static string connectStr = ConfigurationManager.ConnectionStrings["WT"].ConnectionString;
+        //public static string connectStr = ConfigurationManager.ConnectionStrings["WT"].ConnectionString;
         static string[] stDateCode = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" };
         public static string Left(string param, int length)
         {
@@ -27,16 +27,16 @@ namespace MRPSystem
             return result;
         }
 
-        public static List<Taxtype> GetTaxtype()
-        {
-            List<Taxtype> taxtypelist = new List<Taxtype>();
-            taxtypelist.Add(new Taxtype(){Text="1",Value= "外加稅" });
-            taxtypelist.Add(new Taxtype() { Text = "2", Value = "內含稅" });
-            taxtypelist.Add(new Taxtype() { Text = "3", Value = "免稅" });
-            taxtypelist.Add(new Taxtype() { Text = "4", Value = "零稅率" });
-            return taxtypelist;
+        //public static List<Taxtype> GetTaxtype()
+        //{
+        //    List<Taxtype> taxtypelist = new List<Taxtype>();
+        //    taxtypelist.Add(new Taxtype(){Text="1",Value= "外加稅" });
+        //    taxtypelist.Add(new Taxtype() { Text = "2", Value = "內含稅" });
+        //    taxtypelist.Add(new Taxtype() { Text = "3", Value = "免稅" });
+        //    taxtypelist.Add(new Taxtype() { Text = "4", Value = "零稅率" });
+        //    return taxtypelist;
 
-        }
+        //}
 
         public static string GetPlant(string wkno)
         {
