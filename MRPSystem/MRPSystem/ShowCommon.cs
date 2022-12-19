@@ -42,7 +42,7 @@ namespace MRPSystem
             else if (type == "paycode") 
             {
                 //付款方式  paycodeinfo
-                sqlstr = "select paycode,paydesc from aodpayh order by paycode";
+                sqlstr = "select paycode,paydesc from aodpayh with (nolock) order by paycode";
                 var pays = DAOMSSQL.GetQueryList<paycodeinfo>(sqlstr, CompDB);
                 if(pays != null)
                 {

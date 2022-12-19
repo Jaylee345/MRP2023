@@ -81,6 +81,7 @@ namespace MRPSystem.Model
 
         //fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark
     }
+    
     public class custInfo
     {
         public string custno { set; get; }
@@ -95,12 +96,17 @@ namespace MRPSystem.Model
         public string serno { set; get; }
         public int accutday { set; get; }
         public string paycode { set; get; }
+        public string PayName { set; get; }
         public int ddrec { set; get; }
         public string taxtype { set; get; }
+        public string taxdesc { set; get; }
         public Double tax { set; get; }
         public string curcode { set; get; }
         public string remark1 { set; get; } //email,homepage 
         public string email { set; get; }
         public string homepage { set; get; }
+        public string sellerno { set; get; }
+        public string sellerName { set; get; }
+
     }
 }

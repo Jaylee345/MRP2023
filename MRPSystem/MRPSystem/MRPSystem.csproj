@@ -114,6 +114,12 @@
     <Compile Include="System\Common.cs" />
     <Compile Include="System\DAO.cs" />
     <Compile Include="System\DAOMSSQL.cs" />
+    <Compile Include="System\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="System\TransCommand.cs" />
     <EmbeddedResource Include="Customer.resx">
       <DependentUpon>Customer.cs</DependentUpon>
@@ -138,6 +144,9 @@
     </Compile>
     <EmbeddedResource Include="ShowCommon.resx">
       <DependentUpon>ShowCommon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

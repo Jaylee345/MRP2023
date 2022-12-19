@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +17,9 @@ namespace MRPSystem
     public partial class Customer : Form
     {
         public static string CompDB = ConfigurationManager.ConnectionStrings["Comp"].ConnectionString;
-        TextBox changbox = new TextBox();
+        custInfo custinfo = new custInfo() { };
+        private static string mode = "";
+        private static string[] excol = { "taxdesc", "PayName","sellerName" };
         public Customer()
         {
             InitializeComponent();
@@ -24,6 +28,12 @@ namespace MRPSystem
             //taxtype.DataSource = taxlist;
             //taxtype.DisplayMember = "Value";
             //taxtype.ValueMember = "Text";
+            foreach (Control cols in this.Controls)
+            {
+                if (cols is TextBox)
+                        cols.Enabled = false;
+
+            }
 
 
         }
@@ -35,10 +45,37 @@ namespace MRPSystem
             customerData.Columns[0].Width = 120;
             customerData.Columns[1].HeaderText = "名稱";
             customerData.Columns[1].Width = 200;
-            ;
+            
 
 
 
+        }
+
+        private string gettype(string value) 
+        {
+            string ValueString = "";
+            switch (value)
+            {
+                case "String":
+                    ValueString = "String";
+                    break;
+                case "Int32":
+                    ValueString = "Int32";
+                    break;
+                case "Boolean":
+                    ValueString = "Boolean";
+                    break;
+                case "Decimal":
+                    ValueString = "Decimal";
+                    break;
+                case "Double":
+                    ValueString = "Double";
+                    break;
+                default:
+                    ValueString="型別不符";
+                    break;
+            }
+            return ValueString;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,12 +100,121 @@ namespace MRPSystem
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string strsql = "insert into aaccust(custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage ) values('"  ;
+            if (string.IsNullOrEmpty(custno.Text))
+            {
+                msg.Text = "請先叫出客戶資料再執行作業!!!";
+                return;
+            }
+            string Colname = "", colsql = "", ssql = "", esql = "",cno="";
+            if (mode == "Add")
+            {
+                foreach (Control cols in this.Controls)
+                {
+                    if (cols is TextBox)
+                    {
+                        if (!string.IsNullOrEmpty(cols.Text))
+                        {
+                            
+
+                            Colname = cols.Name;
+                            colsql += string.Format("{0},", Colname);
+                            var getItemInfo = custinfo.GetType().GetProperty(Colname);
+                            if (getItemInfo != null)
+                            {
+                                Type ctype = getItemInfo.GetType();
+                                if ((ctype.Name.IndexOf("int") >= 0 || ctype.Name.IndexOf("decimal") >= 0 || ctype.Name.IndexOf("double") >= 0))
+                                    ssql += string.Format("{0},", cols.Text);
+                                else
+                                    ssql += string.Format("'{0}',", cols.Text);
+
+                            }
+                            cols.Enabled = false;
+                        }
+
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(colsql))
+                    esql = string.Format("insert into aaccust({0}) values({1}) ", colsql.Substring(0, colsql.Length - 1), ssql.Substring(0, ssql.Length - 1));
+
+
+            }
+            else 
+            {
+                var k1= Type.GetType("MRPSystem.Model.custInfo.custno");
+                foreach (Control cols in this.Controls)
+                {
+                    if (cols is TextBox)
+                    {
+                        Colname = cols.Name;
+                        if (Colname != "custno" && !excol.Contains(Colname))
+                        {
+                            
+                            if (!string.IsNullOrEmpty(cols.Text))
+                            {
+                                //colsql += string.Format("{0},", Colname);
+                                var getItemInfo = custinfo.GetType().GetProperty(Colname);
+                                if (getItemInfo != null)
+                                {
+                                    
+                                    
+                                    var ctype = gettype(getItemInfo.PropertyType.Name);
+                                    if ((ctype.IndexOf("Int")>=0  || ctype.IndexOf("Decimal")>=0  || ctype.IndexOf("Double") >= 0))
+                                        ssql += string.Format("{0} = {1},", Colname, cols.Text);
+                                    else
+                                        ssql += string.Format("{0}='{1}',", Colname, cols.Text);
+
+                                }
+                            }
+                            cols.Enabled = false;
+                        }
+                        else 
+                        {
+                            cno = cols.Text;
+                        }
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(ssql))
+                    esql = string.Format("update aaccust set {0} where custno='{1}' ", ssql.Substring(0, ssql.Length - 1), cno);
+
+            }
+            Console.WriteLine(esql);
+            Updatebutton.ForeColor = Color.LawnGreen;
+            Delbutton.ForeColor = Color.LawnGreen;
+            Addbutton.ForeColor = Color.LawnGreen;
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(custno.Text))
+            {
+                msg.Text = "請先叫出客戶資料再執行作業!!!";
+                return;
+            }
+            mode = "Updated";
+            Addbutton.Enabled = false;
+            Updatebutton.Enabled = false;
+            Delbutton.Enabled = false;
+            Updatebutton.ForeColor = Color.LightGray;
+            Delbutton.ForeColor = Color.LightGray;
+            Addbutton.ForeColor = Color.LightGray;
+            string Colname = "";
+            foreach (Control cols in this.Controls)
+            {
+                if (cols is TextBox)
+                {
+                    if (cols.Name != "custno")
+                    {
+                        cols.Enabled = true;
+                        
+
+                    }
+
+                }
+
+            }
             string strsql = "UPDATE SaleCustom SET i_lastDateTime = '20221116 15:12:54.930', i_modUser = 'A00000000001', i_modDate = '20221116 15:06:28.170' WHERE i_custom = 'A00000000001' AND i_company = 'A00000000001' AND i_lastDateTime = '20221110 16:24:11.350' AND i_no = 'CS202211001' AND i_clerk IS " +
                 "NULL  AND i_name = 'Test001' AND i_nameE = 'Test001' AND i_shortcut = 'Test001' AND i_shortcutE = 'Test001' AND i_active = 'T' AND i_state = 0 AND i_export = 'F' AND i_ceo IS NULL  AND i_phone1 IS NULL  AND i_phone2 IS NULL  AND i_fax IS NULL  AND i_mobile IS NULL  AND " +
                 "              i_bbCall IS NULL  AND i_addr1 IS NULL  AND i_zip IS NULL  AND i_email IS NULL  AND i_websit = 'www..com' AND i_bank = '' AND i_bankAcc = '' AND i_memo IS NULL  AND i_taxid = '12345678' AND i_taxType = 0 AND i_taxRate = 5.000000 AND i_agent IS NULL  AND i_agentA IS NULL " +
@@ -81,8 +227,8 @@ namespace MRPSystem
             ShowCommon frm = new ShowCommon("sales");
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                salesid.Text = ShowCommon.id ; 
-                salesname.Text = ShowCommon.name; 
+                sellerno.Text = ShowCommon.id ; 
+                sellerName.Text = ShowCommon.name; 
             }
         }
 
@@ -91,8 +237,8 @@ namespace MRPSystem
             ShowCommon frm = new ShowCommon("taxtype");
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                taxid.Text = ShowCommon.id;
-                taxName.Text = ShowCommon.name;
+                taxtype.Text = ShowCommon.id;
+                taxdesc.Text = ShowCommon.name;
             }
         }
         private void button8_Click(object sender, EventArgs e)
@@ -100,41 +246,126 @@ namespace MRPSystem
             ShowCommon frm = new ShowCommon("paycode");
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                Paycode.Text = ShowCommon.id;
-                Payname.Text = ShowCommon.name;
+                paycode.Text = ShowCommon.id;
+                PayName.Text = ShowCommon.name;
             }
         }
-        private void Find(Control col)
+        private string NewCustno(string para)
         {
-            foreach (Control cols in col.Controls)
+            string sql = "SELECT max(custno) as custno  FROM aaccust with(nolock) ";
+            string no = "";
+            int num = 0;
+            //stCount = GetMaxNO().ToString("0000");
+            using (SqlConnection conn = new SqlConnection(CompDB))
+            {
+                conn.Open();
+
+                
+                SqlCommand command = new SqlCommand(sql, conn);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        no = reader[0].ToString() ;
+                        num = Convert.ToInt32(no.Substring(1, 3));
+                    }
+                }
+                num += 1;
+            }
+            return string.Format("{0}{1}", para, num.ToString("000"));
+
+        }
+        private void Find(string custno)
+        {
+            string Colname = "";
+            string sqlstr = string.Format("SELECT top 1 custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,a.fax,serno,accutday,a.paycode,PayName = b.paydesc,ddrec,a.taxtype,taxdesc,tax,curcode,remark1,a.email,a.homepage,sellerno,sellerName=d.lname FROM aaccust a with (nolock) " +
+            "left join  aodpayh b with (nolock) on b.paycode=a.paycode " +
+            "left join  abataxtype c with (nolock) on c.taxtype=a.taxtype " +
+            "left join  asyuser d with (nolock) on d.userno=a.sellerno " +
+                "WHERE 1=1 and custno='{0}' "
+            , custno); 
+            custinfo = DAOMSSQL.GetQuery<custInfo>(sqlstr, CompDB);
+
+            
+
+           var alldata  = custinfo.GetType();
+            //PropertyInfo myPropInfo = alldata.GetProperty("custno");
+            //var barProperty = custinfo.GetType().GetProperty("custno");
+            //string val = barProperty.GetValue(custinfo, null) as string;
+            //Console.WriteLine(val);
+
+
+            foreach (Control cols in this.Controls)
             {
                 if (cols is TextBox)
                 {
-                    //Console.WriteLine(cols.Text);
-                    Console.WriteLine(cols.Name);
-                    continue;
+                    Colname = cols.Name;
+
+
+                    var getItemInfo = custinfo.GetType().GetProperty(Colname);
+                    if (getItemInfo != null) 
+                    { 
+                        string val = getItemInfo.GetValue(custinfo, null) as string;
+                        if (!string.IsNullOrEmpty(val))
+                            cols.Text = val;
+                    }
+
                 }
                 
             }
+            Updatebutton.Enabled = true;
         }
 
-        private  void GetCustomer(string no)
-        {
-            string sqlstr = string.Format("SELECT top 1 custno,custname,shortname,boss,connectman,compaddr,postid,offtel1,offtel2,fax,serno,accutday,paycode,ddrec,taxtype,tax,curcode,remark1,email,homepage  FROM aaccust with (nolock)  " +
-            "WHERE 1=1 and custno='{0}' " 
-            , no);
-
-            //Common.Common.Writetxt(sqlstr);
-            Find(this);
-        }
 
         private void customerData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (customerData.Rows.Count > 0) 
             {
                 string custno = (string)customerData.Rows[e.RowIndex].Cells[0].Value;
-                GetCustomer(custno);
+                Find(custno);
             }
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Addbutton_Click(object sender, EventArgs e)
+        {
+           
+            mode = "Add";
+            foreach (Control cols in this.Controls)
+            {
+                if (cols is TextBox)
+                {
+                    cols.Enabled = true;
+
+                }
+            }
+            custno.Text = NewCustno("V");
+            Addbutton.Enabled = false;
+            Updatebutton.Enabled = false;
+            Delbutton.Enabled = false;
+
+        }
+
+        private void Delbutton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(custno.Text)) 
+            {
+                msg.Text = "請先叫出客戶資料再執行作業!!!";
+                return;
+            }
+            InputBox frm = new InputBox("確定要刪除此筆資料?");
+            string s = "";
+            //frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
+                s = InputBox.value.ToString();
+            }
+
         }
     }
 }
